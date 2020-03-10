@@ -86,14 +86,63 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/bodyBackground.js":
+/*!*******************************!*\
+  !*** ./src/bodyBackground.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nasync function getGiffy(weather) {\n  const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=Ct2SCnHe4VliC4ZpH4LzOkF3g67csISR&s=${weather}`, \n    { mode: 'cors' });\n  const weatherGif = await response.json();\n  console.log(weatherGif.data.images.original.url);\n  setBodyBackground(`url(${weatherGif.data.images.original.url})`);\n}\n\nfunction setBodyBackground(weather) {\n  const bodyBuilder = document.getElementById('body');\n  bodyBuilder.style.backgroundImage = weather;\n  console.log(bodyBuilder.style.backgroundImage);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (getGiffy);\n\n//# sourceURL=webpack:///./src/bodyBackground.js?");
+
+/***/ }),
+
+/***/ "./src/documentBottom.js":
+/*!*******************************!*\
+  !*** ./src/documentBottom.js ***!
+  \*******************************/
+/*! exports provided: getCityForm, changeButton */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getCityForm\", function() { return getCityForm; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"changeButton\", function() { return changeButton; });\nfunction getCityForm() {\n  const lines = document.createElement('div');\n  lines.innerHTML = `\n  <form class=\"form\">\n    <fieldset>\n      <label for=\"city\">Choose a city</label><br>\n      <input type=\"text\" id=\"getCity\" required>\n    </fieldset>\n    <button id=\"submitCity\" class=\"btn-black\">Submit</button>\n  </form>\n  `;\n  return lines;\n}\n\nfunction changeButton(symbol) {\n  const lines = document.createElement('div');\n  lines.innerHTML = `\n    <button id=\"changeTempSymbol\" class=\"btn-black\">\n      Change to ${symbol}\n    </button>\n  `;\n  lines.setAttribute('id', 'changeTempButton');\n  return lines;\n}\n\n\n\n//# sourceURL=webpack:///./src/documentBottom.js?");
+
+/***/ }),
+
+/***/ "./src/getData.js":
+/*!************************!*\
+  !*** ./src/getData.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _useData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useData */ \"./src/useData.js\");\n/* harmony import */ var _bodyBackground__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bodyBackground */ \"./src/bodyBackground.js\");\n\n\n\nasync function getWeather(cityId) {\n  const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityId}&APPID=faafac92de2a320c7ded23b78c83f68d`,\n    { mode: 'cors' });\n  const weatherData = await response.json();\n\n  console.log(weatherData);\n  console.log(weatherData.name, weatherData.sys.country);\n  console.log(Math.round(weatherData.main.temp - 273.15), 'C');\n  console.log(weatherData.wind.speed);\n  console.log(weatherData.weather[0].description);\n\n  Object(_useData__WEBPACK_IMPORTED_MODULE_0__[\"cityName\"])(weatherData);\n  Object(_useData__WEBPACK_IMPORTED_MODULE_0__[\"temperature\"])(weatherData);\n  Object(_useData__WEBPACK_IMPORTED_MODULE_0__[\"otherInfo\"])(weatherData.main, weatherData.wind.speed);\n  Object(_bodyBackground__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(weatherData.weather[0].description);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (getWeather);\n\n//# sourceURL=webpack:///./src/getData.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("async function getWeather(cityId) {\n  const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?id=${cityId}&APPID=faafac92de2a320c7ded23b78c83f68d`, {mode: 'cors'});\n  const weatherData = await response.json();\n  \n  cityName(weatherData.city.name, weatherData.city.country);\n  temperature(weatherData.list[0]);\n  otherInfo(weatherData.list[0].main, weatherData.list[0].wind.speed);\n\n  console.log(weatherData.city.name, weatherData.city.country);\n  console.log(Math.round(weatherData.list[0].main.temp - 273.15), 'C');\n  console.log(weatherData.list[0].wind.speed);\n  console.log(weatherData.list[0].weather[0].description);\n  console.log(weatherData);\n}\n\nfunction cityName(name, country) {\n  const ctNm = document.createElement('h1');\n  ctNm.innerHTML = name + ', ' + country;\n  document.getElementById('weather-top').appendChild(ctNm);\n}\n\nfunction temperature(weatherData) {\n  const mainInfo = document.getElementById('weather-left');\n  mainInfo.innerHTML =  `\n    <h2>${Math.round(weatherData.main.temp - 275.15)}°C</h2>\n    <h2>${weatherData.weather[0].description}</h2>\n  `\n}\n\nfunction otherInfo(weatherData, windSpeed) {\n  const otherInfoLines = document.getElementById('weather-right');\n  otherInfoLines.innerHTML = `\n    <h3>Felling: ${Math.round(weatherData.feels_like - 273.15)} °C</h3>\n    <h3>Min: ${Math.round(weatherData.temp_min - 273.15)} °C</h3>\n    <h3>Max: ${Math.round(weatherData.temp_max - 273.15)} °C</h3>\n    <h3>Humidity: ${weatherData.humidity}</h3>\n    <h3>Wind speed: ${windSpeed}</h3>\n  `\n}\n\nasync function getFile() {\n  const response = await fetch(\"data/city.list.json\");\n  const cityData = await response.json();\n  console.log(cityData);\n}\n\nfunction init() {\n  getWeather(3459504);\n  getFile();\n}\n\ninit();\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _getData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getData */ \"./src/getData.js\");\n/* harmony import */ var _documentBottom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./documentBottom */ \"./src/documentBottom.js\");\n\n\n\nfunction init() {\n  Object(_getData__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('Juiz de Fora');\n\n  document.getElementById('weather-bottom').appendChild(Object(_documentBottom__WEBPACK_IMPORTED_MODULE_1__[\"getCityForm\"])());\n  document.getElementById('weather-bottom').appendChild(Object(_documentBottom__WEBPACK_IMPORTED_MODULE_1__[\"changeButton\"])());\n}\n\ninit();\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/useData.js":
+/*!************************!*\
+  !*** ./src/useData.js ***!
+  \************************/
+/*! exports provided: cityName, temperature, otherInfo */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"cityName\", function() { return cityName; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"temperature\", function() { return temperature; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"otherInfo\", function() { return otherInfo; });\nasync function cityName(data) {\n  const ctNm = document.getElementById('weather-top');\n  ctNm.innerHTML = `\n    <h1>${data.name}, ${data.sys.country}</h1>\n    <h4>${new Date(data.dt * 1000).toUTCString()}</h4>\n  `;\n}\n\nfunction temperature(weatherData) {\n  const mainInfo = document.getElementById('weather-left');\n  mainInfo.innerHTML = `\n    <h2>${Math.round(weatherData.main.temp - 273.15)}°C</h2>\n    <h2>${weatherData.weather[0].description}</h2>\n  `;\n}\n\nfunction otherInfo(weatherData, windSpeed) {\n  const otherInfoLines = document.getElementById('weather-right');\n  otherInfoLines.innerHTML = `\n    <h3>Felling: ${Math.round(weatherData.feels_like - 273.15)} °C</h3>\n    <h3>Min: ${Math.round(weatherData.temp_min - 273.15)} °C</h3>\n    <h3>Max: ${Math.round(weatherData.temp_max - 273.15)} °C</h3>\n    <h3>Humidity: ${weatherData.humidity}</h3>\n    <h3>Wind speed: ${windSpeed}</h3>\n  `;\n}\n\n\n\n//# sourceURL=webpack:///./src/useData.js?");
 
 /***/ })
 
