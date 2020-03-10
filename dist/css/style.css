@@ -1,0 +1,34 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  height: 75vh;
+  width: 60vw;
+  border: solid;
+}
+
+#weather-app {
+  padding: 20px;
+  text-align: center;
+}
+
+#weather-left,
+#weather-right {
+  height: 50vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: 50%;
+}
+
+#weather-left {
+  float: left;
+}
+
+#weather-right {
+  float: right;
+}
