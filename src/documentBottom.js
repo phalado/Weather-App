@@ -13,13 +13,11 @@ function getCityForm() {
 }
 
 function changeButton(symbol) {
-  const lines = document.createElement('div');
-  lines.innerHTML = `
+  const lines = `
     <button id="changeTempSymbol" class="btn-black">
-      Change to ${symbol}
+      Change to ${symbol.getTmpSmbl() ? 'Fahrenheit' : 'Celsius'}
     </button>
   `;
-  lines.setAttribute('id', 'changeTempButton');
   return lines;
 }
 

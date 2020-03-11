@@ -19,6 +19,11 @@ main {
   background: rgba(255, 255, 255, 0.4);
 }
 
+img {
+  width: inherit;
+  align-self: center;
+}
+
 label {
   font-size: 30px;
 }
@@ -30,13 +35,13 @@ label {
 
 #weather-top {
   display: flex;
-  height: 10vh;
+  height: 15vh;
   flex-flow: column;
 }
 
 #weather-left,
 #weather-right {
-  height: 40vh;
+  height: 30vh;
   display: flex;
   flex-flow: column;
   justify-content: center;
