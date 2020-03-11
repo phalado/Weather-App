@@ -1,0 +1,93 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url();
+}
+
+main {
+  height: 75vh;
+  width: 60vw;
+  border: solid;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px rgba(0, 0, 0, 0.23);
+  border-color: beige;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+img {
+  width: inherit;
+  align-self: center;
+}
+
+label {
+  font-size: 30px;
+}
+
+#weather-app {
+  padding: 20px;
+  text-align: center;
+}
+
+#weather-top {
+  display: flex;
+  height: 15vh;
+  flex-flow: column;
+}
+
+#weather-left,
+#weather-right {
+  height: 30vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: 50%;
+}
+
+#weather-left {
+  float: left;
+}
+
+#weather-right {
+  float: right;
+}
+
+#weather-bottom {
+  
+  padding-bottom: 20px;
+}
+
+.form {
+  height: 20vh;
+  float: left;
+  width: 50%;
+}
+
+#getCity {
+  margin-bottom: 15px;
+  width: 80%;
+  font-size: 15px;
+}
+
+#changeTempButton {
+  float: right;
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  height: 20vh;
+  align-items: center;
+}
+
+.btn-black {
+  color: #fff;
+  border-color: black;
+  min-height: 50px;
+  min-width: 200px;
+  background-color: grey;
+  font-size: 20px;
+  border-radius: 7px;
+}
