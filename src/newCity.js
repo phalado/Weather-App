@@ -1,6 +1,7 @@
 import getWeather from './getData';
 
-function newCity() {
+function newCity(e) {
+  e.preventDefault();
   const city = document.getElementById('getCity').value;
   document.getElementById('getCity').value = '';
   getWeather(city);

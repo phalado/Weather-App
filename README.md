@@ -29,7 +29,7 @@ We are using:
 Full task description: <a href="https://www.theodinproject.com/courses/javascript/lessons/weather-app"> Odin Project.</a>
 
 
-For a live version click [here](https://raw.githack.com/phalado/Weather-App/Feature/dist/index.html
+For a live version click [here](https://raw.githack.com/phalado/Weather-App/Develop/dist/index.html
 ).
 
 
