@@ -1,9 +1,9 @@
-import { cityName, temperature, otherInfo } from './useData';
-import getGiffy from './bodyBackground';
+import { cityName, temperature, otherInfo } from "./useData";
+import getGiffy from "./bodyBackground";
 
 async function getWeather(cityId, symbol = true) {
-  const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityId}&APPID=faafac92de2a320c7ded23b78c83f68d`,
-    { mode: 'cors' });
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${cityId}&APPID=faafac92de2a320c7ded23b78c83f68d`;
+  const response = await fetch(url, { mode: "cors" });
   const weatherData = await response.json();
 
   cityName(weatherData);
